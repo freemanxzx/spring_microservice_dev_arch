@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+//package com.techletter;
+
+option java_package = "ai.yuanxing.profile";
+option java_outer_classname = "UserInfoProto";
+
+message TerminalInfo
+{
+  uint32 uTerminalType = 1;
+  string sVersion = 2;
+  string sDeviceToken = 3;      //iTerminalType=1时填
+  uint32 uChannelType = 4;           //1-友盟 默认为1，后续再扩展
+  string sTag = 5;                   //上报的推送版本号
+  string sDUA = 6;                   //机型相关信息
+  string sPackageName = 7;           //包名
+}
+
+message UserInfo
+{
+  uint32 iUserId = 1;
+  string sUserName = 2;
+  string sPassword = 3;
+  string sPhone = 4;
+  bytes  guid = 5;                  //用户唯一标识
+}

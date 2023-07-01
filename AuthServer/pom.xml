@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ai.yuanxing</groupId>
+        <artifactId>SuperServer</artifactId>
+        <version>1.0 </version>
+        <relativePath>../SuperServer/pom.xml</relativePath>
+    </parent>
+
+    <groupId>ai.yuanxing</groupId>
+    <artifactId>AuthServer</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/net.devh/grpc-server-spring-boot-starter -->
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+            <version>2.14.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>ai.yuanxing</groupId>
+            <artifactId>ServerInterface</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>D:/java/maven-rep/ai/yuanxing/ServerInterface/1.0/ServerInterface-1.0.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                            <configuration>
+<!--                                <classifier>spring-boot</classifier>-->
+                                <mainClass>
+                                    ai.yuanxing.AuthServerApplication
+                                </mainClass>
+                            </configuration>
+                        </execution>
+                    </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

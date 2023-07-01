@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+//package com.techletter;
+
+//import "D:/code/java/AuthServer/src/proto1/UserInfo.proto";
+import "UserInfo.proto";
+
+option java_package = "ai.yuanxing.auth";
+option java_outer_classname = "AuthProto";
+
+enum E_AUTH_RET_TYPE
+{
+  E_SUCCESS = 0;         //成功
+  E_ERROR_UNKNOWN_EXCEPTION = 1000;
+  E_ERROR_GEN_VERIFICATION_CODE = 1001;   //生成验证码失败
+}
+
+enum E_LOGIN_TYPE
+{
+  E_WEIXIN_LOGIN      = 0;            //微信登录
+  E_PHONECODE_LOGIN   = 1;            //手机号码短信登录
+  E_PWD_LOGIN         = 2;            //密码登录
+};
+
+message LoginReq
+{
+//    com.techletter.UserInfo stUserInfo  = 1;
+    UserInfo stUserInfo  = 1;
+    E_LOGIN_TYPE eLoginType = 2;
+}
+
+message LoginRsp
+{
+    E_AUTH_RET_TYPE eRetType = 1;
+    string sMsg = 2;
+}
+
+message GenVerificationCodeReq
+{
+  UserInfo stUserInfo  = 1;
+}
+
+message GenVerificationCodeRsp
+{
+  E_AUTH_RET_TYPE eRetType = 1;
+  string sVerificationCode = 2;
+}
+
+service AuthService
+{
+  rpc doLogin(LoginReq) returns (LoginRsp);
+  rpc genVerificationCode(GenVerificationCodeReq) returns (GenVerificationCodeRsp);
+}
+
